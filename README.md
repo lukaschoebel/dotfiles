@@ -1,2 +1,3 @@
-# dotfiles
-Collection of dotfiles and settings
+# DOTFILE
+
+This is my safe haven for my dotfiles.
