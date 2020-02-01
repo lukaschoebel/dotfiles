@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin/:$PATH
+
+# source $HOME/.bashrc
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/Lukas/.oh-my-zsh"
@@ -61,7 +63,7 @@ ZSH_THEME="agnoster"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# ZSH_CUSTOM=/Users/Lukas/Documents/J.A.R.V.I.S.
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -122,9 +124,33 @@ source /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.s
 # added by Miniconda3 installer
 export PATH="/Users/Lukas/miniconda3/bin:$PATH"
 
-# To support GO
+# Set Go paths
+export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Support platform-specific binary variables for Hyperledger Fabric
 export PATH="/Users/Lukas/Documents/J.A.R.V.I.S./hyperledger-fabric/2_code/fabric-samples/bin:$PATH"
+
+# Changing directory
+cd /Users/Lukas/Documents/J.A.R.V.I.S.
+
+# FOR Node.js
+export NODE_PATH='/usr/local/lib/node_modules'
+export PATH="$HOME/.npm-packages/bin:$PATH"
+
+# Used for converting .mov files to .gif 
+function movtogif () {
+  tempfile=.mov-to-gif-$(date +"%s").png
+  ffmpeg -v quiet -stats -y -i $1 -vf fps=10,palettegen $tempfile
+  ffmpeg -v quiet -stats -i $1 -i $tempfile -filter_complex "fps=10,paletteuse" "${1%.mov}.gif"
+  rm $tempfile
+}
+
+# For Pygmentize
+export PATH="/Users/Lukas/.local/bin:$PATH"
+
+# For ImageMagick
+export MAGICK_HOME="$HOME/ImageMagick-7.0.9"
+export PATH="$MAGICK_HOME/bin:$PATH"
+export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
