@@ -15,7 +15,9 @@ ZSH_THEME="agnoster"
 
 # ALIASES
 alias zshrc="code ~/.zshrc"
+alias gac="git add -A && git commit -m"
 alias gcm="git checkout master"
+alias gp='git push'
 alias gb="git checkout -b"
 alias o="open ."
 
