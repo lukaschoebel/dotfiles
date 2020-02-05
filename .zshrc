@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin/:$PATH
+export GPG_TTY=`tty`
 
 # source $HOME/.bashrc
 
@@ -11,6 +12,12 @@ export ZSH="/Users/Lukas/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
+
+# ALIASES
+alias zshrc="code ~/.zshrc"
+alias gcm="git checkout master"
+alias gb="git checkout -b"
+alias o="open ."
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -75,6 +82,7 @@ plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
   vscode
+  gpg-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -84,14 +92,14 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -105,15 +113,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-######################
-# FROM OLD FILE
-######################
 
 # Homebrew
 export PATH=/usr/local/bin:$PATH
-
-# Virtual Environment Wrapper
-# source /usr/local/bin/virtualenvwrapper.sh
 
 #virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
@@ -154,3 +156,22 @@ export PATH="/Users/Lukas/.local/bin:$PATH"
 export MAGICK_HOME="$HOME/ImageMagick-7.0.9"
 export PATH="$MAGICK_HOME/bin:$PATH"
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
+
+# Clean User Interface
+prompt_context() {
+  # Custom (Random emoji)
+  emojis=("⚡️" "🔥" "🐙" "👻" "🚀" "🌙" "🤙🏼" "😌" "✨")
+  RAND_EMOJI_N=$(( $RANDOM % ${#emojis[@]} + 1))
+  prompt_segment black default "${emojis[$RAND_EMOJI_N]} "
+}
+
+# Go to the root of the current git project, or just go one folder up
+function up() {
+  export git_dir="$(git rev-parse --show-toplevel 2> /dev/null)"
+  if [ -z $git_dir ]
+  then
+    cd ..
+  else
+    cd $git_dir
+  fi
+}
