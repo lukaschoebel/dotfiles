@@ -1,11 +1,14 @@
-# DOTFILE
+# DOTFILES
 
-This is the safe haven for my dotfiles. (Hopefully) it gets updated from time to time.
+This is a collection of useful tools and the safe haven for my dotfiles. This (hopefully) gets updated from time to time.
 
-## Tools
+## Essential Tools
 
 - [iTerm3](https://www.iterm2.com/) for MacOS
 - [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh) shell
+- [VS Code](https://code.visualstudio.com/Download)
+- [Magnet](https://apps.apple.com/app/id441258766?mt=12)
+- [Bartender](https://www.macbartender.com/)
 
 ## Geting Started
 
